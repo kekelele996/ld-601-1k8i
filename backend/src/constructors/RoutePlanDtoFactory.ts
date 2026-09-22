@@ -1,1 +1,18 @@
-export const createRoutePlanDto = (overrides = {}) => ({ id: 1, user_id: 1, origin_text: "origin text 1", destination_text: "destination text 1", route_mode: "route mode 1", risk_level: "LOW", estimated_minutes: "estimated minutes 1", facility_ids: [1,2], created_at: "2026-06-11T09:00:00Z", ...overrides });
+import type { RoutePlan } from "../models/RoutePlan";
+
+export const createRoutePlanDto = (overrides: Partial<RoutePlan> = {}): RoutePlan => ({
+  id: 0,
+  user_id: 0,
+  origin_text: "",
+  destination_text: "",
+  route_mode: "WHEELCHAIR",
+  risk_level: "LOW",
+  status: "IN_PROGRESS",
+  estimated_minutes: 0,
+  facility_ids: [],
+  block_reason: null,
+  created_at: "",
+  ...overrides
+});
+
+export const toRoutePlanDto = (row: RoutePlan): RoutePlan => createRoutePlanDto({ ...row });

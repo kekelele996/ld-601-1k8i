@@ -1,177 +1,260 @@
-export const seed = {
-  "userProfile": [
+// 本地种子数据同时作为运行期内存数据源（本地评审禁止接入第三方 API / 外部数据库依赖）。
+// 注意：不要加 as const，service 层在停用影响评估确认后需要原地变更这些记录。
+export const buildSeedData = () => ({
+  userProfile: [
     {
-      "id": 1,
-      "nickname": "nickname 1",
-      "phone": "13800000001",
-      "mobility_type": "LOW_VISION",
-      "assistive_device": "assistive device 1",
-      "emergency_contact": "emergency contact 1",
-      "preferred_language": "preferred language 1",
-      "created_at": "2026-06-11T09:00:00Z"
+      id: 1,
+      nickname: "林晓",
+      phone: "13800000001",
+      mobility_type: "LOW_VISION",
+      assistive_device: "盲杖",
+      emergency_contact: "林父 13900000001",
+      preferred_language: "zh-CN",
+      created_at: "2026-06-11T09:00:00Z"
     },
     {
-      "id": 2,
-      "nickname": "nickname 2",
-      "phone": "13800000002",
-      "mobility_type": "WHEELCHAIR",
-      "assistive_device": "assistive device 2",
-      "emergency_contact": "emergency contact 2",
-      "preferred_language": "preferred language 2",
-      "created_at": "2026-06-12T09:00:00Z"
+      id: 2,
+      nickname: "陈铎",
+      phone: "13800000002",
+      mobility_type: "WHEELCHAIR",
+      assistive_device: "手动轮椅",
+      emergency_contact: "陈母 13900000002",
+      preferred_language: "zh-CN",
+      created_at: "2026-06-12T09:00:00Z"
     },
     {
-      "id": 3,
-      "nickname": "nickname 3",
-      "phone": "13800000003",
-      "mobility_type": "ELDERLY",
-      "assistive_device": "assistive device 3",
-      "emergency_contact": "emergency contact 3",
-      "preferred_language": "preferred language 3",
-      "created_at": "2026-06-13T09:00:00Z"
+      id: 3,
+      nickname: "苏奶奶",
+      phone: "13800000003",
+      mobility_type: "ELDERLY",
+      assistive_device: "助行器",
+      emergency_contact: "苏叔叔 13900000003",
+      preferred_language: "zh-CN",
+      created_at: "2026-06-13T09:00:00Z"
     }
   ],
-  "accessibleFacility": [
+  accessibleFacility: [
     {
-      "id": 1,
-      "facility_type": "LOW_VISION",
-      "name": "name 1",
-      "location_code": "location code 1",
-      "floor": "floor 1",
-      "status": "BLOCKED",
-      "last_checked_at": "2026-06-11T09:00:00Z",
-      "owner_department": "owner department 1",
-      "note": "note 1"
+      id: 1,
+      facility_type: "WHEELCHAIR",
+      name: "东门无障碍坡道",
+      location_code: "GATE-E-RAMP-01",
+      floor: "1F",
+      status: "AVAILABLE",
+      last_checked_at: "2026-09-20T09:00:00Z",
+      owner_department: "场站运维一组",
+      note: "东门主出入口坡道",
+      deactivation_note: null as string | null,
+      deactivated_at: null as string | null,
+      deactivated_by: null as number | null
     },
     {
-      "id": 2,
-      "facility_type": "WHEELCHAIR",
-      "name": "name 2",
-      "location_code": "location code 2",
-      "floor": "floor 2",
-      "status": "MAINTENANCE",
-      "last_checked_at": "2026-06-12T09:00:00Z",
-      "owner_department": "owner department 2",
-      "note": "note 2"
+      id: 2,
+      facility_type: "WHEELCHAIR",
+      name: "B 座无障碍电梯",
+      location_code: "TOWER-B-LIFT-02",
+      floor: "1F-3F",
+      status: "AVAILABLE",
+      last_checked_at: "2026-09-19T14:30:00Z",
+      owner_department: "电梯维保班",
+      note: "连接一层候车厅与三层站台",
+      deactivation_note: null as string | null,
+      deactivated_at: null as string | null,
+      deactivated_by: null as number | null
     },
     {
-      "id": 3,
-      "facility_type": "ELDERLY",
-      "name": "name 3",
-      "location_code": "location code 3",
-      "floor": "floor 3",
-      "status": "AVAILABLE",
-      "last_checked_at": "2026-06-13T09:00:00Z",
-      "owner_department": "owner department 3",
-      "note": "note 3"
+      id: 3,
+      facility_type: "BLIND",
+      name: "主通道盲道",
+      location_code: "HALL-TACTILE-03",
+      floor: "1F",
+      status: "MAINTENANCE",
+      last_checked_at: "2026-09-18T10:00:00Z",
+      owner_department: "场站运维二组",
+      note: "中段盲道翻修中",
+      deactivation_note: null as string | null,
+      deactivated_at: null as string | null,
+      deactivated_by: null as number | null
+    },
+    {
+      id: 4,
+      facility_type: "ELDERLY",
+      name: "一层无障碍卫生间",
+      location_code: "TOILET-1F-BARRIERFREE",
+      floor: "1F",
+      status: "BLOCKED",
+      last_checked_at: "2026-09-17T16:20:00Z",
+      owner_department: "保洁班组",
+      note: "门把手损坏待换",
+      deactivation_note: null as string | null,
+      deactivated_at: null as string | null,
+      deactivated_by: null as number | null
     }
   ],
-  "routePlan": [
+  routePlan: [
     {
-      "id": 1,
-      "user_id": 1,
-      "origin_text": "origin text 1",
-      "destination_text": "destination text 1",
-      "route_mode": "route mode 1",
-      "risk_level": "LOW",
-      "estimated_minutes": "estimated minutes 1",
-      "facility_ids": [
-        1,
-        2
-      ],
-      "created_at": "2026-06-11T09:00:00Z"
+      id: 1,
+      user_id: 1,
+      origin_text: "东门公交站",
+      destination_text: "一层服务中心",
+      route_mode: "WHEELCHAIR",
+      risk_level: "LOW",
+      status: "IN_PROGRESS",
+      estimated_minutes: 12,
+      facility_ids: [1],
+      block_reason: null as string | null,
+      created_at: "2026-09-21T08:30:00Z"
     },
     {
-      "id": 2,
-      "user_id": 2,
-      "origin_text": "origin text 2",
-      "destination_text": "destination text 2",
-      "route_mode": "route mode 2",
-      "risk_level": "MEDIUM",
-      "estimated_minutes": "estimated minutes 2",
-      "facility_ids": [
-        1,
-        2
-      ],
-      "created_at": "2026-06-12T09:00:00Z"
+      id: 2,
+      user_id: 2,
+      origin_text: "P2 无障碍车位",
+      destination_text: "三层 3 站台",
+      route_mode: "WHEELCHAIR",
+      risk_level: "HIGH",
+      status: "IN_PROGRESS",
+      estimated_minutes: 25,
+      facility_ids: [1, 2],
+      block_reason: null as string | null,
+      created_at: "2026-09-21T09:10:00Z"
     },
     {
-      "id": 3,
-      "user_id": 3,
-      "origin_text": "origin text 3",
-      "destination_text": "destination text 3",
-      "route_mode": "route mode 3",
-      "risk_level": "HIGH",
-      "estimated_minutes": "estimated minutes 3",
-      "facility_ids": [
-        1,
-        2
-      ],
-      "created_at": "2026-06-13T09:00:00Z"
+      id: 3,
+      user_id: 3,
+      origin_text: "东门公交站",
+      destination_text: "二层爱心候车区",
+      route_mode: "ELDERLY",
+      risk_level: "MEDIUM",
+      status: "COMPLETED",
+      estimated_minutes: 18,
+      facility_ids: [1],
+      block_reason: null as string | null,
+      created_at: "2026-09-10T07:50:00Z"
+    },
+    {
+      id: 4,
+      user_id: 1,
+      origin_text: "一层服务中心",
+      destination_text: "三层 1 站台",
+      route_mode: "WHEELCHAIR",
+      risk_level: "MEDIUM",
+      status: "IN_PROGRESS",
+      estimated_minutes: 20,
+      facility_ids: [2],
+      block_reason: null as string | null,
+      created_at: "2026-09-21T09:40:00Z"
+    },
+    {
+      id: 5,
+      user_id: 2,
+      origin_text: "西门出租车上客区",
+      destination_text: "一层无障碍卫生间",
+      route_mode: "WHEELCHAIR",
+      risk_level: "LOW",
+      status: "CANCELLED",
+      estimated_minutes: 9,
+      facility_ids: [4],
+      block_reason: null as string | null,
+      created_at: "2026-09-15T11:00:00Z"
     }
   ],
-  "assistanceRequest": [
+  assistanceRequest: [
     {
-      "id": 1,
-      "user_id": 1,
-      "route_plan_id": 1,
-      "helper_id": 1,
-      "request_time": "2026-06-11T09:00:00Z",
-      "status": "BLOCKED",
-      "meet_point": "meet point 1",
-      "contact_note": "contact note 1"
+      id: 1,
+      user_id: 1,
+      route_plan_id: 1,
+      helper_id: null as number | null,
+      request_time: "2026-09-21T08:35:00Z",
+      status: "REQUESTED",
+      meet_point: "东门公交站遮阳棚",
+      contact_note: "视障乘客，需要引导至服务中心",
+      block_reason: null as string | null,
+      blocked_by_facility_id: null as number | null
     },
     {
-      "id": 2,
-      "user_id": 2,
-      "route_plan_id": 2,
-      "helper_id": 2,
-      "request_time": "2026-06-12T09:00:00Z",
-      "status": "MAINTENANCE",
-      "meet_point": "meet point 2",
-      "contact_note": "contact note 2"
+      id: 2,
+      user_id: 2,
+      route_plan_id: 2,
+      helper_id: 2,
+      request_time: "2026-09-21T09:15:00Z",
+      status: "ACCEPTED",
+      meet_point: "P2 无障碍车位 C-08",
+      contact_note: "轮椅乘客，需协助搭乘电梯",
+      block_reason: null as string | null,
+      blocked_by_facility_id: null as number | null
     },
     {
-      "id": 3,
-      "user_id": 3,
-      "route_plan_id": 3,
-      "helper_id": 3,
-      "request_time": "2026-06-13T09:00:00Z",
-      "status": "AVAILABLE",
-      "meet_point": "meet point 3",
-      "contact_note": "contact note 3"
+      id: 3,
+      user_id: 3,
+      route_plan_id: 3,
+      helper_id: 3,
+      request_time: "2026-09-10T07:55:00Z",
+      status: "COMPLETED",
+      meet_point: "东门公交站",
+      contact_note: "已完成",
+      block_reason: null as string | null,
+      blocked_by_facility_id: null as number | null
+    },
+    {
+      id: 4,
+      user_id: 1,
+      route_plan_id: 4,
+      helper_id: 3,
+      request_time: "2026-09-21T09:45:00Z",
+      status: "ARRIVED",
+      meet_point: "一层服务中心门口",
+      contact_note: "志愿者已到达，等待乘客",
+      block_reason: null as string | null,
+      blocked_by_facility_id: null as number | null
+    },
+    {
+      id: 5,
+      user_id: 2,
+      route_plan_id: 5,
+      helper_id: 2,
+      request_time: "2026-09-15T11:05:00Z",
+      status: "CANCELLED",
+      meet_point: "西门出租车上客区",
+      contact_note: "乘客取消",
+      block_reason: null as string | null,
+      blocked_by_facility_id: null as number | null
     }
   ],
-  "barrierReport": [
+  barrierReport: [
     {
-      "id": 1,
-      "reporter_id": 1,
-      "facility_id": 1,
-      "barrier_type": "LOW_VISION",
-      "description": "description 1",
-      "photo_url": "/mock/photo_url-1.png",
-      "verify_status": "BLOCKED",
-      "priority": "priority 1"
+      id: 1,
+      reporter_id: 1,
+      facility_id: 3,
+      barrier_type: "LOW_VISION",
+      description: "主通道盲道中段被施工围挡占用",
+      photo_url: "/mock/photo_url-1.png",
+      verify_status: "CONFIRMED",
+      priority: "HIGH"
     },
     {
-      "id": 2,
-      "reporter_id": 2,
-      "facility_id": 2,
-      "barrier_type": "WHEELCHAIR",
-      "description": "description 2",
-      "photo_url": "/mock/photo_url-2.png",
-      "verify_status": "MAINTENANCE",
-      "priority": "priority 2"
+      id: 2,
+      reporter_id: 2,
+      facility_id: 4,
+      barrier_type: "WHEELCHAIR",
+      description: "无障碍卫生间门把手松动，无法关门",
+      photo_url: "/mock/photo_url-2.png",
+      verify_status: "PENDING",
+      priority: "MEDIUM"
     },
     {
-      "id": 3,
-      "reporter_id": 3,
-      "facility_id": 3,
-      "barrier_type": "ELDERLY",
-      "description": "description 3",
-      "photo_url": "/mock/photo_url-3.png",
-      "verify_status": "AVAILABLE",
-      "priority": "priority 3"
+      id: 3,
+      reporter_id: 3,
+      facility_id: 1,
+      barrier_type: "ELDERLY",
+      description: "坡道入口提示牌字迹模糊",
+      photo_url: "/mock/photo_url-3.png",
+      verify_status: "RESOLVED",
+      priority: "LOW"
     }
   ]
-} as const;
+});
+
+export type SeedData = ReturnType<typeof buildSeedData>;
+
+// 进程级单例：后端运行期间的所有写操作都作用在这份内存数据上，重启后回到种子状态。
+export const seed: SeedData = buildSeedData();

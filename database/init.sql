@@ -18,7 +18,10 @@ CREATE TABLE IF NOT EXISTS accessible_facility (
   status TEXT,
   last_checked_at TEXT,
   owner_department TEXT,
-  note TEXT
+  note TEXT,
+  deactivation_note TEXT,
+  deactivated_at TEXT,
+  deactivated_by INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS route_plan (
@@ -28,8 +31,10 @@ CREATE TABLE IF NOT EXISTS route_plan (
   destination_text TEXT,
   route_mode TEXT,
   risk_level TEXT,
+  status TEXT,
   estimated_minutes TEXT,
   facility_ids TEXT,
+  block_reason TEXT,
   created_at TEXT
 );
 
@@ -41,7 +46,9 @@ CREATE TABLE IF NOT EXISTS assistance_request (
   request_time TEXT,
   status TEXT,
   meet_point TEXT,
-  contact_note TEXT
+  contact_note TEXT,
+  block_reason TEXT,
+  blocked_by_facility_id INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS barrier_report (

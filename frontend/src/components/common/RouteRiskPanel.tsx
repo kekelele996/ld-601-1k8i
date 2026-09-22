@@ -1,5 +1,17 @@
 import { StatusBadge } from "./StatusBadge";
 
-export function RouteRiskPanel({ title = "RouteRiskPanel", value = "READY" }: { title?: string; value?: string }) {
-  return <div className="shared-widget"><strong>{title}</strong><StatusBadge value={value} /></div>;
+interface Props {
+  title?: string;
+  value?: string;
+  label?: string;
+  tone?: "danger" | "warning" | "neutral" | "success";
+}
+
+export function RouteRiskPanel({ title = "RouteRiskPanel", value = "READY", label, tone }: Props) {
+  return (
+    <div className="shared-widget shared-widget--inline">
+      <strong>{title}</strong>
+      <StatusBadge value={value} label={label} tone={tone} />
+    </div>
+  );
 }

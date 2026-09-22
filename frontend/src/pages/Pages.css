@@ -1,0 +1,259 @@
+.page-panel {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.page-panel__head h1 {
+  font-size: clamp(24px, 3vw, 34px);
+  margin: 0;
+}
+
+.page-panel__sub {
+  margin: 6px 0 0;
+  color: #596257;
+  font-size: 13px;
+}
+
+.filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: #fbfaf4;
+  border: 1px solid #d8d6c8;
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.filter-bar label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  color: #596257;
+}
+
+.filter-bar select {
+  border: 1px solid #c9c4b4;
+  border-radius: 6px;
+  padding: 6px 8px;
+  background: #fff;
+  font: inherit;
+}
+
+.filter-bar__count {
+  margin-left: auto;
+  font-size: 13px;
+  color: #596257;
+}
+
+.facility-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+}
+
+.facility-card {
+  background: #fbfaf4;
+  border: 1px solid #d8d6c8;
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.facility-card--disabled {
+  border-color: #d8a79c;
+  background: #fdf6f4;
+}
+
+.facility-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.facility-card__head h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+
+.facility-card__code {
+  margin: 0;
+  font-size: 12px;
+  color: #7d887f;
+}
+
+.facility-card__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.facility-card__meta dt {
+  color: #8b928a;
+  display: inline;
+  margin-right: 4px;
+}
+
+.facility-card__meta dd {
+  display: inline;
+  margin: 0;
+  color: #2c3730;
+}
+
+.facility-card__note {
+  margin: 0;
+  font-size: 12px;
+  color: #9d3a28;
+  background: #f7e3de;
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+
+.facility-card__idem {
+  margin: 0;
+  font-size: 12px;
+  color: #8a5a16;
+}
+
+.facility-card__affected {
+  border-top: 1px dashed #d8d6c8;
+  padding-top: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.facility-card__affected h4 {
+  margin: 0;
+  font-size: 13px;
+  color: #274335;
+}
+
+.facility-card__affected ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.facility-card__affected li {
+  border: 1px solid #e4e0d3;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.link-id {
+  font-weight: 800;
+  color: #7d4d18;
+  margin-right: 6px;
+}
+
+.link-text {
+  flex: 1 1 200px;
+}
+
+.block-reason {
+  flex-basis: 100%;
+  margin: 4px 0 0;
+  color: #8b928a;
+  font-size: 12px;
+}
+
+.block-reason--active {
+  color: #9d3a28;
+  font-weight: 600;
+}
+
+.facility-card__action {
+  border: 1px solid #274335;
+  background: #274335;
+  color: #f5f1e6;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.route-list,
+.assistance-list {
+  display: grid;
+  gap: 14px;
+}
+
+.route-card,
+.assistance-card {
+  background: #fbfaf4;
+  border: 1px solid #d8d6c8;
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.assistance-card--blocked {
+  border-color: #d8a79c;
+  background: #fdf6f4;
+}
+
+.route-card__head,
+.assistance-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.route-card__head h3,
+.assistance-card__head h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.route-card__badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.route-card__meta {
+  margin: 0;
+  font-size: 12px;
+  color: #596257;
+}
+
+.route-card__facilities,
+.assistance-card__people {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.shared-widget--inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.shared-widget--danger {
+  border-color: #d8a79c;
+  background: #f7e3de;
+}
+
+@media (max-width: 760px) {
+  .facility-grid {
+    grid-template-columns: 1fr;
+  }
+}

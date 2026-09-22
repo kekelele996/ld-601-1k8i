@@ -1,1 +1,20 @@
-export const createAssistanceRequestDto = (overrides = {}) => ({ id: 1, user_id: 1, route_plan_id: 1, helper_id: 1, request_time: "2026-06-11T09:00:00Z", status: "BLOCKED", meet_point: "meet point 1", contact_note: "contact note 1", ...overrides });
+import type { AssistanceRequest } from "../models/AssistanceRequest";
+
+export const createAssistanceRequestDto = (
+  overrides: Partial<AssistanceRequest> = {}
+): AssistanceRequest => ({
+  id: 0,
+  user_id: 0,
+  route_plan_id: 0,
+  helper_id: null,
+  request_time: "",
+  status: "REQUESTED",
+  meet_point: "",
+  contact_note: "",
+  block_reason: null,
+  blocked_by_facility_id: null,
+  ...overrides
+});
+
+export const toAssistanceRequestDto = (row: AssistanceRequest): AssistanceRequest =>
+  createAssistanceRequestDto({ ...row });
