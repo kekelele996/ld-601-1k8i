@@ -8,4 +8,7 @@ export interface AccessibleFacility {
   last_checked_at: string;
   owner_department: string;
   note: string;
+  deactivated_at: string | null;
+  deactivated_by: number | null;
+  deactivation_note: string | null;
 }

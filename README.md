@@ -2,6 +2,18 @@
 
 面向视障、轮椅和行动不便人群的室内外无障碍路线协助系统，聚合站点、设施、路线、志愿协助与障碍上报流程。
 
+## 设施停用影响评估流程
+
+巡检员在「设施巡检」页对可用设施发起停用，系统执行跨实体影响评估：
+
+1. 扫描所有引用该设施的**进行中路线**（`route_status = ACTIVE`），以及这些路线下状态为待接单 / 已接单 / 已到达的**未完成协助请求**。
+2. 若存在高风险路线或已接单（含已到达）请求，**必须填写影响说明**；缺少说明时整次操作返回 `409 IMPACT_NOTE_REQUIRED`，设施状态、路线风险与阻塞说明均不变。
+3. 确认后：设施标为 `DISABLED` 并记录影响说明；引用它的进行中路线一律升为 `HIGH` 高风险并写入阻塞说明；未完成请求写入 `blocked_reason`/`blocked_at`，`helper_id` 接单关系与请求状态保留。
+4. 已停用设施重复提交只处理一次（返回 `deactivated: false`，不再重复升级或写阻塞）。
+5. 设施页列出受影响路线与请求；路线页展示高风险状态与阻塞说明，协助页展示阻塞标记；后端为内存态存储，接口刷新后结果一致，前端在后端不可达时使用本地降级引擎复现同一流程。
+
+接口：`GET /api/accessible-facility/:id/deactivation-impact`（预览）、`POST /api/accessible-facility/:id/deactivate`（确认，body 为 `{"impact_note":"..."}`）。
+
 ## 快速启动
 
 ```bash
@@ -55,7 +67,7 @@ backend/src/routes, controllers, services, models, repositories, middlewares, co
 ## 枚举/常量出现位置清单
 
 - MobilityType: constants/MobilityType、types/MobilityType、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
-- FacilityStatus: constants/FacilityStatus、types/FacilityStatus、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
+- FacilityStatus: AVAILABLE / BLOCKED / MAINTENANCE / UNKNOWN / DISABLED（停用影响评估确认后写入）：constants/FacilityStatus（前后端两份）、types/FacilityStatus、constructors、logTemplates（deactivateScan/deactivate/deactivateRejected）、errorCodes/errorMessages（IMPACT_NOTE_REQUIRED 等）、utils/formatters、筛选器、FacilityTag/StatusBadge 展示组件、DeactivationImpactService、数据库 init.sql 均有引用。
 - AssistanceStatus: constants/AssistanceStatus、types/AssistanceStatus、constructors、logTemplates、errorMessages、筛选器、展示组件/控制器均有引用。
 
 ## 为什么会牵一发动全身
